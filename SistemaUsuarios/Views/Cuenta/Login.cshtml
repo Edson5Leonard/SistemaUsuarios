@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="card mx-auto" style="width: 350px; margin-top: 50px;">
+    <div class="card-body">
+        <h4>Iniciar Sesión</h4>
+        <form action="/Login/Entrar" method="post">
+            <input type="email" name="email" class="form-control mb-2" placeholder="Correo" required />
+            <input type="password" name="password" class="form-control mb-2" placeholder="Contraseña" required />
+            <button class="btn btn-primary w-100">Entrar</button>
+        </form>
+        <p class="text-danger">@ViewBag.Error</p>
+        <hr />
+        <a href="/Login/Registro">Registrarse</a> | <a href="/Login/Olvide">Olvidé mi clave</a>
+    </div>
+</div>
