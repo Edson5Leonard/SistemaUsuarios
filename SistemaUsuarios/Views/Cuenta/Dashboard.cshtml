@@ -1,13 +1,49 @@
-﻿@{
+﻿@model IEnumerable<SistemaUsuarios.Models.Usuario>
+
+@{
     ViewData["Title"] = "Panel de Control";
 }
 
 <div class="container mt-5">
     <div class="jumbotron">
-        <h1 class="display-4">¡Bienvenido al Sistema!</h1>
+        <h2>Usuarios Registrados</h2>
         <p class="lead">Has iniciado sesión correctamente.</p>
         <hr class="my-4">
-        <p>Esta es tu página de Dashboard.</p>
-        <a class="btn btn-danger" href="/Login">Cerrar Sesión</a>
+        <p>Has iniciado sesión correctamente</p>
+        <hr/>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Accciones</th>
+                </tr>
+            </thead>
+       
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <a asp-controller="Login"
+                               asp-action="Editar"
+                               asp-route-id="@item.Id"
+                               class="btn btn-sm btn-info">
+                                Editar
+                            </a>            
+                            <a href="@Url.Action("Eliminar", "Login", new{ id = item.Id})" class="btn btn-sm btn-danger" 
+                            onclick="return confirm('¿Estas seguro que quieres eliminar este usuario?")">Elimnar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a class="btn btn-secondary" href="/Login">Cerrar Sessión</a>
     </div>
 </div>

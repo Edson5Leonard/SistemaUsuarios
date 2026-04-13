@@ -1,0 +1,18 @@
+﻿@model SistemaUsuarios.Models.Usuario
+
+<div class="container mt-5">
+    <h4>Editar Usuario</h4>
+    <form asp-action="ProcesarEditar" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input asp-for="Nombre" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a asp-action="Dashboard" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

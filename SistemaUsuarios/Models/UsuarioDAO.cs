@@ -5,7 +5,7 @@ namespace SistemaUsuarios.Models
 {
     public class UsuarioDAO
     {
-        string cadena = "Server=8CGK1P111102A05;Database=SistemaUsuarios;Trusted_Connection=True;TrustServerCertificate=True;";
+        string cadena = "Server=DESKTOP-1J8Q53V;Database=SistemaUsuarios;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public bool Registrar(Usuario u)
         {
@@ -81,6 +81,88 @@ namespace SistemaUsuarios.Models
             }
         }
 
+
+        public List<Usuario> ListarTodos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            using (Microsoft.Data.SqlClient.SqlConnection cn = new Microsoft.Data.SqlClient.SqlConnection(cadena))
+            {
+                string sql = "SELECT Id, Nombre, Email FROM Usuarios";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new Usuario
+                    {
+                        Id = (int)dr["Id"],
+                        Nombre = dr["Nombre"].ToString().Trim(),
+                        Email = dr["Email"].ToString().Trim()
+                    });
+                }
+            }
+            return lista;
+        }
        
+            
+        //Metodo para eliminar 
+        public bool Eliminar(int id)
+        {
+            using (Microsoft.Data.SqlClient.SqlConnection cn = new Microsoft.Data.SqlClient.SqlConnection(cadena))
+            {
+                string sql = "DELETE FROM Usuarios WHERE Id = @id";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@id", id);
+                cn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+
+            }
+        }
+
+
+        //Obtener Usuario
+
+        public Usuario ObtenerPorId(int id)
+        {
+            using (Microsoft.Data.SqlClient.SqlConnection cn = new Microsoft.Data.SqlClient.SqlConnection(cadena))
+            {
+                // Usamos Usuarios (plural) como está en tu base.sql
+                string sql = "SELECT Id, Nombre, Email FROM Usuarios WHERE Id = @id";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@id", id);
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return new Usuario
+                        {
+                            Id = (int)dr["Id"],
+                            Nombre = dr["Nombre"].ToString().Trim(),
+                            Email = dr["Email"].ToString().Trim()
+                        };
+                    }
+                }
+            }
+            return null;
+        }
+
+        //Metodo para Editar datos basicos
+
+        public bool Editar(Usuario u)
+        {
+            using (Microsoft.Data.SqlClient.SqlConnection cn = new Microsoft.Data.SqlClient.SqlConnection(cadena))
+            {
+                string sql = "UPDATE Usuarios SET Nombre=@n, Email=@e WHERE Id=@id";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@n", u.Nombre);
+                cmd.Parameters.AddWithValue("@e", u.Email);
+                cmd.Parameters.AddWithValue("@id", u.Id);
+                cn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
     }
 }

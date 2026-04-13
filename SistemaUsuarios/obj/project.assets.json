@@ -1201,23 +1201,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alumno\\.nuget\\packages\\": {},
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SistemaUsuarios\\SistemaUsuarios\\SistemaUsuarios.csproj",
+      "projectUniqueName": "D:\\Edson\\Autoestudio\\Quiton ciclo\\SEMINARIO 2\\Tarea 08\\SistemaUsuarios\\SistemaUsuarios\\SistemaUsuarios.csproj",
       "projectName": "SistemaUsuarios",
-      "projectPath": "D:\\SistemaUsuarios\\SistemaUsuarios\\SistemaUsuarios.csproj",
-      "packagesPath": "C:\\Users\\Alumno\\.nuget\\packages\\",
-      "outputPath": "D:\\SistemaUsuarios\\SistemaUsuarios\\obj\\",
+      "projectPath": "D:\\Edson\\Autoestudio\\Quiton ciclo\\SEMINARIO 2\\Tarea 08\\SistemaUsuarios\\SistemaUsuarios\\SistemaUsuarios.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\Edson\\Autoestudio\\Quiton ciclo\\SEMINARIO 2\\Tarea 08\\SistemaUsuarios\\SistemaUsuarios\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Alumno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1275,7 +1275,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

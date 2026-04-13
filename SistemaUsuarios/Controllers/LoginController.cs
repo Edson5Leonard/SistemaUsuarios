@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using SistemaUsuarios.Models;
 
 namespace SistemaUsuarios.Controllers
@@ -43,8 +44,43 @@ namespace SistemaUsuarios.Controllers
             return View("~/Views/Cuenta/OlviderPassword.cshtml");
         }
 
-        public IActionResult Dashboard() => View("~/Views/Cuenta/Dashboard.cshtml");
+        public IActionResult Dashboard()
+        {
+            //Obtenemos la lista de la base de datos 
+            var listaUsuarios = dao.ListarTodos();
+            // Se la pasamos a la vista
+            return View("~/Views/Cuenta/Dashboard.cshtml", listaUsuarios);
+        }
 
+
+        //Acccion para eliminar 
+        public IActionResult Eliminar(int id)
+        {
+            dao.Eliminar(id);
+            return RedirectToAction("Dashboard");
+        }
+
+        
+
+        //Accion para editar 
+        public IActionResult Editar(int id)
+        {
+            // Necesitas un método en tu DAO que busque un usuario por ID
+            var usuario = dao.ObtenerPorId(id);
+            return View("~/Views/Cuenta/Editar.cshtml", usuario);
+        }
+
+
+        [HttpPost]
+        public IActionResult Editar(Usuario u)
+        {
+            if (dao.Editar(u))
+            {
+                return RedirectToAction(nameof(Dashboard));
+            }
+            var lista = dao.ListarTodos(); 
+           return View("~/Views/Cuenta/Dashboard.cshtml", lista);
+        }
 
         // Muestra la pantalla para ingresar el token y la nueva clave
         public IActionResult ResetPassword() => View("~/Views/Cuenta/ResetPassword.cshtml");
